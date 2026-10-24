@@ -1,6 +1,7 @@
 using HotelManagements.Entities;
-using HotelManagements.Interfaces;
+using HotelManagements.Infrastructure.Repositories;
 using HotelManagements.Services;
+using HotelManagments.Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,8 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddScoped<IRoomService, RoomServices>();
-builder.Services.AddScoped<IGuestService, GuestService>();
+builder.Services.AddScoped<IGuestsRepository, GuestsRepository>();
+builder.Services.AddScoped<IRoomsRepository, RoomsRepository>();
+builder.Services.AddScoped<GuestService>();
+builder.Services.AddScoped<RoomServices>();
+
 builder.Services.AddDbContext<HotelDbContext>(option => option.UseSqlServer(
     builder.Configuration.GetConnectionString("DbConnection")
     ));

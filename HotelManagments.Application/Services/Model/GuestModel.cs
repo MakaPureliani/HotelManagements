@@ -1,4 +1,4 @@
-﻿namespace HotelManagements.Model
+﻿namespace HotelManagments.Application.Services.Model
 {
     public class GuestModel
     {

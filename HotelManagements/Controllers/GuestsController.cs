@@ -1,7 +1,7 @@
 ﻿using Azure.Core;
 using HotelManagements.Entities;
-using HotelManagements.Interfaces;
-using HotelManagements.Model;
+using HotelManagements.Services;
+using HotelManagments.Application.Services.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,8 +12,8 @@ namespace HotelManagements.Controllers
     public class GuestsController : ControllerBase
     {
 
-        private readonly IGuestService _guestService;
-        public GuestsController(IGuestService guestService)
+        private readonly GuestService _guestService;
+        public GuestsController(GuestService guestService)
         {
             _guestService = guestService;
         }
@@ -21,6 +21,7 @@ namespace HotelManagements.Controllers
         [HttpPost]
         public IActionResult AddGuest(AddGuestRequest request)
         {
+
             _guestService.AddGuest(request);
             return Ok();
         }

@@ -1,4 +1,5 @@
-﻿using HotelManagements.Interfaces;
+﻿
+using HotelManagements.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,16 +9,16 @@ namespace HotelManagements.Controllers
     [ApiController]
     public class RoomsController : ControllerBase
     {
-        private readonly IRoomService _roomService;
-        public RoomsController(IRoomService roomService)
+        private readonly RoomServices _roomService;
+        public RoomsController(RoomServices roomService)
         {
             _roomService = roomService;
         }
 
         [HttpGet]
-        public IActionResult GetRooms()
+        public IActionResult GetRooms(DateTime? startDate, DateTime? endDate)
         {
-            return Ok( _roomService.GetRooms());
+            return Ok( _roomService.GetRooms(startDate,endDate));
         }
 
         [HttpGet]
